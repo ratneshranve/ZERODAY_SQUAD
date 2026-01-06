@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
+const Alert = require('../models/Alert');
 
 exports.register = async (req, res) => {
   const errors = validationResult(req);
@@ -43,6 +44,15 @@ exports.login = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ token, role: user.role });
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+};
+
+exports.getUserAlerts = async (req, res) => {
+  try {
+    const alerts = await Alert.find({ sent: true }).sort({ createdAt: -1 });
+    res.json(alerts);
   } catch (err) {
     res.status(500).send('Server error');
   }
