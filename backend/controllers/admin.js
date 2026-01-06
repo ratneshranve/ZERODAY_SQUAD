@@ -51,6 +51,8 @@ exports.sendUserAlert = async (req, res) => {
     // Update message for user alert
     if (alert.type === 'predicted') {
       alert.message = `आपके क्षेत्र में ${alert.impactTime ? new Date(alert.impactTime).toLocaleString() : 'जल्दी'} गंदा पानी आने वाला है। कृपया सुरक्षित पानी स्टोर करें। (Polluted water may reach your area soon. Please store safe water.)`;
+    } else if (alert.type === 'polluted') {
+      alert.message = `आपके क्षेत्र में पानी प्रदूषित है। पीने से बचें और अधिकारियों से संपर्क करें। (Water in your area is polluted. Avoid drinking and contact authorities.)`;
     }
 
     res.json({ msg: 'Alert sent to users' });

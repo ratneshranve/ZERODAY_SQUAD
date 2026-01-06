@@ -13,9 +13,8 @@ const UserDashboard = () => {
         console.log('User object:', user);
         console.log('User ID:', user?.id);
         console.log('Is user logged in:', !!user);
-        // For now, no user-specific alerts
-        // const alertsRes = await API.get('/user/alerts');
-        // setAlerts(alertsRes.data);
+        const alertsRes = await API.get('/auth/alerts');
+        setAlerts(alertsRes.data);
 
         const reportsRes = await API.get('/reports');
         console.log('All reports:', reportsRes.data);
@@ -25,7 +24,7 @@ const UserDashboard = () => {
           // Handle both populated user object and ObjectId string
           const reportUserId = r.userId?._id || r.userId;
           console.log('Comparing report userId:', reportUserId, 'with user.id:', user.id);
-          return reportUserId == user.id; // Use loose equality for string/ObjectId comparison
+          return reportUserId === user.id; // Use strict equality for string/ObjectId comparison
         });
         console.log('Filtered reports for user:', myReports);
         setUserReports(myReports);
@@ -41,7 +40,15 @@ const UserDashboard = () => {
   const rejectedCount = userReports.filter(r => r.status === 'rejected').length;
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto p-8 relative" style={{
+      backgroundImage: `url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      minHeight: '100vh'
+    }}>
+      <div className="absolute inset-0 bg-white/10"></div>
+      <div className="relative z-10">
       <h1 className="text-3xl font-bold mb-6">User Dashboard</h1>
       <p>Welcome, {user ? 'User' : 'Guest'}!</p>
       
@@ -112,6 +119,7 @@ const UserDashboard = () => {
             ))}
           </ul>
         )}
+      </div>
       </div>
     </div>
   );
