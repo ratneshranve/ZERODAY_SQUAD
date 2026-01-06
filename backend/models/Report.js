@@ -1,16 +1,13 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const reportSchema = new mongoose.Schema({
-  userId: mongoose.Schema.Types.ObjectId,
-  problemType: {
-    type: String,
-    enum: ["foam", "dark_water", "bad_smell", "oil"]
-  },
-  location: {
-    lat: Number,
-    lng: Number
-  },
-  gridId: String
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  gridId: { type: String, required: true },
+  lat: { type: Number, required: true },
+  lng: { type: Number, required: true },
+  timestamp: { type: Date, default: Date.now },
+  issueType: { type: String, enum: ['Foam', 'Dark water', 'Bad smell', 'Oil layer'], required: true },
+  status: { type: String, enum: ['pending', 'verified', 'rejected'], default: 'pending' }
 }, { timestamps: true });
 
-export default mongoose.model("Report", reportSchema);
+module.exports = mongoose.model('Report', reportSchema);
