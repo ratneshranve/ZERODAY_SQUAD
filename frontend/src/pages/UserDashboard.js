@@ -13,9 +13,8 @@ const UserDashboard = () => {
         console.log('User object:', user);
         console.log('User ID:', user?.id);
         console.log('Is user logged in:', !!user);
-        // For now, no user-specific alerts
-        // const alertsRes = await API.get('/user/alerts');
-        // setAlerts(alertsRes.data);
+        const alertsRes = await API.get('/auth/alerts');
+        setAlerts(alertsRes.data);
 
         const reportsRes = await API.get('/reports');
         console.log('All reports:', reportsRes.data);

@@ -86,9 +86,9 @@ const Home = () => {
                 <Droplets className="w-12 h-12 text-white" />
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
-                Indore Smart Water
+                Aqua Safe
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
-                  Pollution System
+                 
                 </span>
               </h1>
             </div>
@@ -233,7 +233,7 @@ const Home = () => {
             <div className="col-span-2">
               <div className="flex items-center mb-4">
                 <Droplets className="w-8 h-8 text-blue-400 mr-3" />
-                <span className="text-2xl font-bold">Indore Water</span>
+                <span className="text-2xl font-bold">Aqua Safe</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Protecting Indore's water resources through technology and community engagement.
@@ -270,7 +270,7 @@ const Home = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2026 Indore Smart Water Pollution Detection System. All rights reserved.</p>
+            <p>&copy; 2026 Aqua Safe. All rights reserved.</p>
           </div>
         </div>
       </footer>

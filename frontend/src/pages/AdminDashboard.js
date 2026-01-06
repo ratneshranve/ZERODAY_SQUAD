@@ -61,6 +61,7 @@ const AdminDashboard = () => {
 
   const sendAlert = async (id) => {
     await API.post("/admin/send-alert", { alertId: id });
+    setAlerts(prev => prev.filter(a => a._id !== id));
     alert("Alert sent successfully");
   };
 
