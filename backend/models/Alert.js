@@ -1,13 +1,11 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const alertSchema = new mongoose.Schema({
-  gridId: String,
-  affectedAt: Date,
-  message: String,
-  status: {
-    type: String,
-    default: "ACTIVE"
-  }
+  gridId: { type: String, required: true },
+  type: { type: String, enum: ['polluted', 'predicted'], required: true },
+  impactTime: { type: Date },
+  message: { type: String, required: true },
+  sent: { type: Boolean, default: false }
 }, { timestamps: true });
 
-export default mongoose.model("Alert", alertSchema);
+module.exports = mongoose.model('Alert', alertSchema);
